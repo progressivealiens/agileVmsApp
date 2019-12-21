@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root_frag_mobile">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.agile.agilevisitor.customviews.MyTextview
+            android:id="@+id/tv_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Your Mobile Number"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginBottom="@dimen/dp_15"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:hint="Enter Mobile Number"
+            android:textColorHint="@color/colorBlack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="@dimen/sp_16" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.agile.agilevisitor.customviews.MyButton
+            android:id="@+id/btn_send_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_marginEnd="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_15"
+            android:background="@drawable/button_round_corners"
+            android:text="Send Verification Code"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

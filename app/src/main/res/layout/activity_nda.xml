@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.activity.visiting_panel.NDAActivity">
+
+    <include layout="@layout/toolbar_layout"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Non Disclosure Agreement"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/colorPrimary"
+                android:padding="@dimen/dp_10"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nda_implementation"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/colorBlack"
+                android:padding="@dimen/dp_10"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/tv_decline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decline"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_17"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@drawable/button_small_rect_round"
+            android:paddingStart="@dimen/dp_30"
+            android:paddingEnd="@dimen/dp_30"/>
+
+        <Button
+            android:id="@+id/tv_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_17"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@drawable/button_small_rect_round"
+            android:paddingStart="@dimen/dp_30"
+            android:paddingEnd="@dimen/dp_30"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

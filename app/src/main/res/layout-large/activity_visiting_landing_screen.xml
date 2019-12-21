@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.activity.visiting_panel.VisitingLandingScreen">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_15"
+        android:text="Welcome \n\nAgile Visitor Management System \n\nLaxmi Plaza, Andheri"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <com.agile.agilevisitor.customviews.MyTextview
+            android:id="@+id/tv_select_operation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="Please Select An Operation"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.agile.agilevisitor.customviews.MyTextview
+                android:id="@+id/tv_checkin"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_150"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_20"
+                android:background="@drawable/circle_drawable"
+                android:gravity="center"
+                android:text="Check In"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+            <com.agile.agilevisitor.customviews.MyTextview
+                android:id="@+id/tv_checkout"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_150"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_20"
+                android:background="@drawable/circle_drawable"
+                android:gravity="center"
+                android:text="Check Out"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_invited_visitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invited Visitor??? Enter passcode \nScan QR Code"
+        android:gravity="center"
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp_20"/>
+
+</LinearLayout>

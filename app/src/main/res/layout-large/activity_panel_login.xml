@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root_panel">
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:src="@drawable/top_layout"
+        android:scaleType="fitXY"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:src="@drawable/bottom_layout"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/dp_20"
+        android:layout_centerInParent="true">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            android:hint="Company Email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_company_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:drawableStart="@drawable/ic_mail_black_24dp"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            android:hint="Unit Code"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_unit_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:drawableStart="@drawable/ic_autorenew_black_24dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorBlack"
+            android:hint="Unit Password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_unit_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:drawableStart="@drawable/ic_data_usage_black_24dp"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack"
+            android:hint="Panel Code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_panel_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:drawableStart="@drawable/ic_import_export_black_24dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.agile.agilevisitor.customviews.MyButton
+            android:id="@+id/btn_panel_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_60"
+            android:background="@drawable/button_round_corners"
+            android:gravity="center"
+            android:text="Panel Login"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

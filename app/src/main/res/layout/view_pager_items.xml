@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <com.agile.agilevisitor.customviews.MyTextview
+        android:id="@+id/tv_heading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        android:gravity="center"
+        android:padding="@dimen/dp_15"
+        android:text="@string/visiting_panel_intro"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dp_10"/>
+
+    <ImageView
+        android:id="@+id/iv_images"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".65"
+        android:scaleType="fitXY"
+        android:src="@drawable/visiting_panel" />
+
+    <com.agile.agilevisitor.customviews.MyTextview
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:gravity="center"
+        android:padding="@dimen/dp_15"
+        android:text="@string/visiting_panel_subheading"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_18" />
+
+
+</LinearLayout>

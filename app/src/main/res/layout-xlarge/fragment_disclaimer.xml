@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sign="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_disclaimer"
+    android:background="@color/colorWhite">
+
+
+    <com.agile.agilevisitor.customviews.MyTextview
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Sign Below"
+        android:padding="@dimen/dp_15"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_18"/>
+
+    <com.kyanogen.signatureview.SignatureView
+        android:id="@+id/signature_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        sign:penSize="3dp"
+        sign:backgroundColor="#ffffff"
+        sign:penColor="#000000"
+        sign:enableSignature="true"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <com.agile.agilevisitor.customviews.MyButton
+            android:id="@+id/btn_clear_sign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round_corners"
+            android:text="CLEAR"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight=".5"
+            android:layout_margin="@dimen/dp_10"/>
+
+        <com.agile.agilevisitor.customviews.MyButton
+            android:id="@+id/btn_submit_sign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round_corners"
+            android:text="FINISH"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight=".5"
+            android:layout_margin="@dimen/dp_10"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

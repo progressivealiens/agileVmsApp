@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root_choose">
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:src="@drawable/top_layout"
+        android:scaleType="fitXY"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:src="@drawable/bottom_layout"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:src="@drawable/agile_logo_upgraded"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dp_30"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            android:hint="Mobile Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_login_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="@dimen/dp_10"
+                android:maxLength="10"
+                android:fontFamily="font/aver_bold"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/dp_10"
+            android:theme="@style/TextLabel"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorBlack"
+            android:hint="Password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorBlack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_24dp"
+                android:drawablePadding="@dimen/dp_10"
+                android:fontFamily="font/aver_bold"
+                android:inputType="textPassword"
+                android:textSize="@dimen/sp_15" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.agile.agilevisitor.customviews.MyButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_60"
+            android:background="@drawable/button_round_corners"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.agile.agilevisitor.customviews.MyTextview
+            android:id="@+id/tv_visiting_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="@string/visiting_panel"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

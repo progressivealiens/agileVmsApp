@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">AgileVisitor</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+    <string name="text_check_network">No Internet Connection Found.Please Check Your Internet Connection</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="image">Image</string>
+    <string name="title_activity_choose_user_type">ChooseUserTypeActivity</string>
+    <string name="visiting_panel"><u> Visiting Panel </u></string>
+    <string name="change_mobile_number"><u> Change Mobile Number </u></string>
+    <string name="skip_introduction">Skip Introduction</string>
+    <string name="visiting_panel_intro">Visiting Panel</string>
+    <string name="send_invitation">Send Invitation</string>
+    <string name="receive_notification">Receive Notification</string>
+    <string name="proceed">Proceed</string>
+    <string name="visiting_panel_subheading">Flawless check-in and check-out, with phone verification, image capturing, host detail capturing feature.</string>
+    <string name="send_invitation_subheading">Send prior check-in invitation to your friends,guest or clients for smooth check-in and meetups with date time and location.</string>
+    <string name="receive_notification_subheading">Get instant notification about the visitor\'s arrival into the premises.</string>
+    <string name="title_activity_user_home">UserHomeActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="success">success</string>
+    <string name="bad_request">Bad Request!! Please retry.</string>
+    <string name="network_busy">Network Busy.</string>
+    <string name="resource_not_found">Resource Not Found.</string>
+    <string name="something_went_wrong">Something went heywire!! please retry.</string>
+
+    <string name="nda_implementation">
+        <b>1: Cardholder</b>\n
+    The cardholder is defined as the individual whose name and photograph appears on the Card; for any applications held on the Card; the Card having been issued in response to the request to purchase a Visitors Card and the provision of personal details to a member of staff at the Central Library.\n\n
+    <b>2: The Visitor Card</b>\n
+    The Visitor Card is defined as a means for non-residents to take advantage of discounts and offers under the Residents Discount Scheme and is offered by Aberdeen City Council (ACC) and is valid for 2 years from the date of purchase.\n\n
+    <b>3: The Residents Discount Scheme</b>\n
+    The Residents Discount Scheme (Scheme) is designed to deliver certain Aberdeen City Council (ACC) and partner services and activities.\n\n
+    4: The Card is the property of ACC (at the Accord Office, Business Hub 17, Third Floor North, Marischal College, Broad Street, Aberdeen, AB10 1AB) and is available for purchase to all non residents.\n\n
+    5: The Card is intended for the sole use of the cardholder.\n\n
+    6: Ownership of the Card is non-transferable.\n\n
+    7: The cardholder must immediately inform the Council if their Card is lost or stolen. A new Card may be purchased at a cost of £10 from the Central Library, Rosemount Viaduct, Aberdeen, AB25 1GW, 03000 200293.\n\n
+    8: The Card will become invalid if tampered with in any way. It is the responsibility of the cardholder to keep the card in good condition. If a replacement card is required due to misuse, or damage, a replacement Card may be purchased from the Central Library at a cost of £10.\n\n
+    9: ACC reserves the right at any time to alter Terms and Conditions. Up to date Terms and Conditions will be posted on the website.\n\n
+    10: The agreement is governed by the laws of Scotland.\n\n
+    11: ACC shall not be liable to any person for any loss, or damage, which may arise from possession or use of the Card whatsoever.\n\n
+    12: Where a transaction is carried out using the Card, be it a financial or a non-financial transaction between the cardholder and a third party including any ACC service, a contract will exist between the cardholder and that third party. The cardholder will be bound by the terms of this transaction. A cardholder\'s correspondence or participation in promotions or business dealings with third parties and any other terms, conditions, warranties or representations associated with such dealings, are solely between the cardholder and third parties. ACC shall not be responsible or liable for any loss or damage of any sort incurred as the result of any such dealings, or as the result of the presence of third party products and services within the Card.\n\n
+    13: Service providers, including ACC, shall have the right to cancel the services they provide to a cardholder, should that cardholder contravene the Terms and Conditions of that service. The decision to cancel a service rests with the service provider.\n\n
+    14: ACC reserve the right to take any appropriate action deemed necessary, where it is found that the cardholder has abused the Scheme. In particular, the giving of false information with the intent to defraud ACC or any third party will result in appropriate action being taken.\n
+    15: All services provided are subject to availability and ACC does not guarantee the continued availability of any service on the Card. Services may be withdrawn without notice.\n\n
+    16: ACC will only process data which is adequate, relevant and not excessive in relation to the purposes for which it is being processed.\n\n
+</string>
+    <string name="agile_i_batch">Agile iBadge</string>
+
+    <string name="permission_granted_success">Permission granted successfully</string>
+    <string name="sorry_cant_use">Sorry!!!, you can\'t use this app without granting permission</string>
+    <string name="invited_visitor_enter_passcode_nscan_qr_code"><u>Invited Visitor??? Enter Passcode \nScan QR Code</u></string>
+
+
+</resources>

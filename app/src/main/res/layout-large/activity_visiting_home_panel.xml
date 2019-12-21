@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.activity.visiting_panel.VisitingHomePanel"
+    android:weightSum="1">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight=".4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.agile.agilevisitor.customviews.MyTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agile Visitor Management System"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:textSize="@dimen/sp_18"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
+
+            <com.agile.agilevisitor.customviews.MyTextview
+                android:id="@+id/tv_unit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:textSize="@dimen/sp_18"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_gravity="center"
+            android:src="@drawable/agile_logo_upgraded"
+            android:layout_marginTop="@dimen/dp_20"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight=".6" />
+
+</LinearLayout>
