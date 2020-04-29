@@ -66,8 +66,8 @@ public class UserHomeActivity extends AppCompatActivity
     MyTextview tvVisitors;
     @BindView(R.id.btn_send_checkin_invite)
     MyButton btnSendCheckinInvite;
-    @BindView(R.id.btn_visitor_history)
-    MyButton btnVisitorHistory;
+    /*@BindView(R.id.btn_visitor_history)
+    MyButton btnVisitorHistory;*/
 
     ApiInterface apiInterface;
     ProgressView progressView;
@@ -100,7 +100,7 @@ public class UserHomeActivity extends AppCompatActivity
         navView.setNavigationItemSelectedListener(this);
 
         btnSendCheckinInvite.setOnClickListener(this);
-        btnVisitorHistory.setOnClickListener(this);
+        //btnVisitorHistory.setOnClickListener(this);
         btnViewProfile.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
 
@@ -134,9 +134,9 @@ public class UserHomeActivity extends AppCompatActivity
             startActivity(new Intent(UserHomeActivity.this, UserHomeActivity.class));
         } else if (id == R.id.nav_send_invitation) {
             startActivity(new Intent(UserHomeActivity.this, UserCheckinInvitation.class));
-        } else if (id == R.id.nav_visitor_history) {
+        } /*else if (id == R.id.nav_visitor_history) {
             startActivity(new Intent(UserHomeActivity.this, VisitorHistoryActivity.class));
-        }else if (id == R.id.nav_rate_us) {
+        }*/else if (id == R.id.nav_rate_us) {
 
         } else if (id == R.id.nav_share) {
 
@@ -208,9 +208,9 @@ public class UserHomeActivity extends AppCompatActivity
     public void onClick(View v) {
         if (v.getId() == R.id.btn_send_checkin_invite) {
             startActivity(new Intent(UserHomeActivity.this, UserCheckinInvitation.class));
-        } else if (v.getId() == R.id.btn_visitor_history) {
+        } /*else if (v.getId() == R.id.btn_visitor_history) {
             startActivity(new Intent(UserHomeActivity.this, VisitorHistoryActivity.class));
-        } else if (v.getId() == R.id.btn_view_profile) {
+        } */else if (v.getId() == R.id.btn_view_profile) {
             startActivity(new Intent(UserHomeActivity.this, UserProfileActivity.class));
         } else if (v.getId() == R.id.btn_logout) {
             logout();

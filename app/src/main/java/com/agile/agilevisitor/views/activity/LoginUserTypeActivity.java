@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.hbb20.CountryCodePicker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,7 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
 
     String token = "";
 
-    public static final int PERMISSIONS_REQUEST_CODE=1012;
+    public static final int PERMISSIONS_REQUEST_CODE = 1012;
 
     @Override
     protected void onStart() {
@@ -84,16 +85,16 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
         tvVisitingPanel.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
 
-        apiInterface = ApiClient.getClient(LoginUserTypeActivity.this,0).create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(LoginUserTypeActivity.this, 0).create(ApiInterface.class);
         progressView = new ProgressView(LoginUserTypeActivity.this);
     }
 
     private boolean startRequestPermission() {
         if (ActivityCompat.checkSelfPermission(LoginUserTypeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ActivityCompat.checkSelfPermission(LoginUserTypeActivity.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED||
+                ActivityCompat.checkSelfPermission(LoginUserTypeActivity.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(LoginUserTypeActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(LoginUserTypeActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_CODE);
+            ActivityCompat.requestPermissions(LoginUserTypeActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_CODE);
 
             return false;
         } else {
@@ -110,16 +111,16 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.btn_login:
 
-                if (Validation.nullValidator(etLoginMobile.getText().toString())){
+                if (Validation.nullValidator(etLoginMobile.getText().toString())) {
                     Utils.showSnackBar(rootChoose, "Mobile Number can't be null", etLoginMobile, LoginUserTypeActivity.this);
-                }else if (!Validation.mobileValidator(etLoginMobile.getText().toString())){
+                } else if (!Validation.mobileValidator(etLoginMobile.getText().toString())) {
                     Utils.showSnackBar(rootChoose, "Mobile Number must be 10 digits long", etLoginMobile, LoginUserTypeActivity.this);
-                }else if (Validation.nullValidator(etLoginPassword.getText().toString())){
+                } else if (Validation.nullValidator(etLoginPassword.getText().toString())) {
                     Utils.showSnackBar(rootChoose, "Password can't be blank", etLoginMobile, LoginUserTypeActivity.this);
-                }else if (!Validation.passValidator(etLoginPassword.getText().toString())){
+                } else if (!Validation.passValidator(etLoginPassword.getText().toString())) {
                     Utils.showSnackBar(rootChoose, "Password must be 3 characters long", etLoginMobile, LoginUserTypeActivity.this);
-                }else{
-                    connectApiToLoginUser(etLoginMobile.getText().toString(),etLoginPassword.getText().toString());
+                } else {
+                    connectApiToLoginUser(etLoginMobile.getText().toString(), etLoginPassword.getText().toString());
                 }
         }
     }
@@ -130,7 +131,7 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
 
         if (requestCode == PERMISSIONS_REQUEST_CODE) {
             if (grantResults.length <= 0) {
-                Log.e("PermissionProblem","PermissionProblem");
+                Log.e("PermissionProblem", "PermissionProblem");
             } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(LoginUserTypeActivity.this, R.string.permission_granted_success, Toast.LENGTH_LONG).show();
             } else if (grantResults[0] == PackageManager.PERMISSION_DENIED || grantResults[1] == PackageManager.PERMISSION_DENIED || grantResults[2] == PackageManager.PERMISSION_DENIED) {
@@ -146,7 +147,7 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
         if (CheckNetworkConnection.isConnection1(LoginUserTypeActivity.this, true)) {
             progressView.showLoader();
 
-            Call<ApiResponse> call = apiInterface.userLogin(mobile,password,PrefData.readStringPref(PrefData.pref_fcm_token));
+            Call<ApiResponse> call = apiInterface.userLogin(mobile, password, PrefData.readStringPref(PrefData.pref_fcm_token));
             call.enqueue(new Callback<ApiResponse>() {
                 @Override
                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -156,28 +157,28 @@ public class LoginUserTypeActivity extends AppCompatActivity implements View.OnC
 
                         if (response.body().getStatus().equalsIgnoreCase(getString(R.string.success))) {
 
-                            PrefData.writeStringPref(PrefData.pref_user_mobile,mobile);
-                            PrefData.writeBooleanPref(PrefData.PREF_LOGINSTATUS,true);
-                            PrefData.writeStringPref(PrefData.user_type,"User");
+                            PrefData.writeStringPref(PrefData.pref_user_mobile, mobile);
+                            PrefData.writeBooleanPref(PrefData.PREF_LOGINSTATUS, true);
+                            PrefData.writeStringPref(PrefData.user_type, "User");
 
-                            String firstLetterOfUsername=response.body().getName().substring(0,1).toUpperCase();
-                            String username=response.body().getName().substring(1);
-                            username=firstLetterOfUsername+username;
+                            String firstLetterOfUsername = response.body().getName().substring(0, 1).toUpperCase();
+                            String username = response.body().getName().substring(1);
+                            username = firstLetterOfUsername + username;
 
-                            PrefData.writeStringPref(PrefData.pref_user_name,username);
-                            PrefData.writeStringPref(PrefData.pref_user_logo,response.body().getLogo());
-                            PrefData.writeStringPref(PrefData.pref_user_invites,response.body().getInvites());
-                            PrefData.writeStringPref(PrefData.pref_user_visitors,response.body().getVisitor());
+                            PrefData.writeStringPref(PrefData.pref_user_name, username);
+                            PrefData.writeStringPref(PrefData.pref_user_logo, response.body().getLogo());
+                            PrefData.writeStringPref(PrefData.pref_user_invites, response.body().getInvites());
+                            PrefData.writeStringPref(PrefData.pref_user_visitors, response.body().getVisitor());
 
                             startActivity(new Intent(LoginUserTypeActivity.this, UserHomeActivity.class));
                             finish();
 
                             Toast.makeText(LoginUserTypeActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
 
-                        }else {
+                        } else {
                             Utils.showSnackBar(rootChoose, response.body().getMsg(), LoginUserTypeActivity.this);
                         }
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         if (response.code() == 400) {
                             Toast.makeText(LoginUserTypeActivity.this, getString(R.string.bad_request), Toast.LENGTH_SHORT).show();
                         } else if (response.code() == 500) {

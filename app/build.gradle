@@ -16,24 +16,34 @@ repositories {
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.agile.agilevisitor"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries true
+        dexInProcess = true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES' // will not include NOTICE file
     }
 }
 
@@ -65,6 +75,8 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
     implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.hbb20:ccp:2.3.7'
+    implementation 'com.twilio.sdk:twilio:7.42.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

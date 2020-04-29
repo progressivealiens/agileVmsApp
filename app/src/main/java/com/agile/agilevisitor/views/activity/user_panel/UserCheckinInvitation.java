@@ -37,6 +37,7 @@ import com.agile.agilevisitor.webapi.ApiResponse;
 import com.agile.agilevisitor.webapi.OTPResponse;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,8 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
     Toolbar toolbar;
     @BindView(R.id.et_user_name)
     TextInputEditText etUserName;
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
     @BindView(R.id.et_user_number)
     TextInputEditText etUserNumber;
     @BindView(R.id.iv_contacts)
@@ -83,8 +86,9 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
     List<String> visitorTypeList;
     String selectedVisitorType = "";
 
-    ApiInterface apiInterface,apiInterfaceSMS;
+    ApiInterface apiInterface, apiInterfaceSMS;
     ProgressView progressView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +108,42 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        btnSendInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Validation.nullValidator(etUserName.getText().toString())) {
+                    Toast.makeText(UserCheckinInvitation.this, "Please Fill The Name", Toast.LENGTH_LONG).show();
+                } else if (Validation.nullValidator(etUserNumber.getText().toString())) {
+                    Toast.makeText(UserCheckinInvitation.this, "Please Fill The Number", Toast.LENGTH_LONG).show();
+                } else if (Validation.nullValidator(etDate.getText().toString())) {
+                    Toast.makeText(UserCheckinInvitation.this, "Please Fill The Date", Toast.LENGTH_LONG).show();
+                } else if (Validation.nullValidator(etTime.getText().toString())) {
+                    Toast.makeText(UserCheckinInvitation.this, "Please Fill The Time", Toast.LENGTH_LONG).show();
+                } else if (selectedVisitorType.equalsIgnoreCase("")) {
+                    Toast.makeText(UserCheckinInvitation.this, "Please Select The Visitor Type", Toast.LENGTH_SHORT).show();
+                } else{
+                    ccp.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
+                        @Override
+                        public void onValidityChanged(boolean isValidNumber) {
+                            if (!isValidNumber) {
+                                Utils.showSnackBar(rootCheckinInvitation, "Please write the mobile number in proper format", etUserNumber, UserCheckinInvitation.this);
+                            } else {
+                                connectApiToInvite(
+                                        etUserName.getText().toString(),
+                                        ccp.getFullNumberWithPlus(),
+                                        etUserEmail.getText().toString(),
+                                        etDate.getText().toString(),
+                                        etTime.getText().toString(),
+                                        selectedVisitorType);
+                            }
+                        }
+                    });
+
+                }
             }
         });
     }
@@ -128,15 +168,14 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
         etDate.setOnClickListener(this);
         etTime.setOnClickListener(this);
         ivContacts.setOnClickListener(this);
-        btnSendInvite.setOnClickListener(this);
 
         visitorTypeList = new ArrayList<>();
         spinnerVisitorType.setPrompt("Select Visitor Type *");
 
         apiInterface = ApiClient.getClient(UserCheckinInvitation.this, 0).create(ApiInterface.class);
-        apiInterfaceSMS=ApiClient.getOTPClient(UserCheckinInvitation.this).create(ApiInterface.class);
+        apiInterfaceSMS = ApiClient.getOTPClient(UserCheckinInvitation.this).create(ApiInterface.class);
         progressView = new ProgressView(UserCheckinInvitation.this);
-
+        ccp.registerCarrierNumberEditText(etUserNumber);
     }
 
     @Override
@@ -155,29 +194,6 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
             case R.id.iv_contacts:
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 startActivityForResult(intent, PICK_CONTACT);
-                break;
-            case R.id.btn_send_invite:
-
-                if (Validation.nullValidator(etUserName.getText().toString())) {
-                    Toast.makeText(this, "Please Fill The Name", Toast.LENGTH_LONG).show();
-                } else if (Validation.nullValidator(etUserNumber.getText().toString())) {
-                    Toast.makeText(this, "Please Fill The Number", Toast.LENGTH_LONG).show();
-                } else if (Validation.nullValidator(etDate.getText().toString())) {
-                    Toast.makeText(this, "Please Fill The Date", Toast.LENGTH_LONG).show();
-                } else if (Validation.nullValidator(etTime.getText().toString())) {
-                    Toast.makeText(this, "Please Fill The Time", Toast.LENGTH_LONG).show();
-                } else if (selectedVisitorType.equalsIgnoreCase("")) {
-                    Toast.makeText(this, "Please Select The Visitor Type", Toast.LENGTH_SHORT).show();
-                } else {
-                    connectApiToInvite(
-                            etUserName.getText().toString(),
-                            etUserNumber.getText().toString(),
-                            etUserEmail.getText().toString(),
-                            etDate.getText().toString(),
-                            etTime.getText().toString(),
-                            selectedVisitorType);
-                }
-
                 break;
         }
     }
@@ -203,11 +219,21 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
                     try {
                         if (response.body().getStatus().equalsIgnoreCase(getString(R.string.success))) {
 
-                            String address=response.body().getAddress();
-                            String passcode=String.valueOf(response.body().getPasscode());
-                            String QrLink=response.body().getQrLink();
+                            int noOfInvites = Integer.parseInt(PrefData.readStringPref(PrefData.pref_user_invites));
+                            noOfInvites = noOfInvites + 1;
+                            PrefData.writeStringPref(PrefData.pref_user_invites, noOfInvites + "");
 
-                            connectApiToSendSMSInvitation(name,number,address,date,time,passcode,QrLink);
+                            Toast.makeText(UserCheckinInvitation.this, "Invitation send successfully along with Passcode and Qr code", Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(UserCheckinInvitation.this, UserHomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                            /*String address=response.body().getAddress();
+                            String passcode=String.valueOf(response.body().getPasscode());
+                            String QrLink=response.body().getQrLink();*/
+
+                            //connectApiToSendSMSInvitation(name,number,address,date,time,passcode,QrLink);
 
                         } else {
                             Utils.showSnackBar(rootCheckinInvitation, response.body().getMsg(), UserCheckinInvitation.this);
@@ -234,7 +260,7 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void connectApiToSendSMSInvitation(String Name,String Number,String Address,String Date,String time,String passcode,String QrLink) {
+    private void connectApiToSendSMSInvitation(String Name, String Number, String Address, String Date, String time, String passcode, String QrLink) {
 
         if (CheckNetworkConnection.isConnection1(UserCheckinInvitation.this, true)) {
             progressView.showLoader();
@@ -261,18 +287,8 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
 
                         if (response.body().getStatus().equalsIgnoreCase(getString(R.string.success))) {
 
-
-                            int noOfInvites=Integer.parseInt(PrefData.readStringPref(PrefData.pref_user_invites));
-                            noOfInvites=noOfInvites+1;
-                            PrefData.writeStringPref(PrefData.pref_user_invites,noOfInvites+"");
-
-                            Toast.makeText(UserCheckinInvitation.this, "Invitation send successfully along with Passcode and Qr code", Toast.LENGTH_LONG).show();
-
-                            Intent intent=new Intent(UserCheckinInvitation.this,UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
                         }
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         if (response.code() == 400) {
                             Toast.makeText(UserCheckinInvitation.this, getString(R.string.bad_request), Toast.LENGTH_SHORT).show();
                         } else if (response.code() == 500) {
@@ -330,14 +346,12 @@ public class UserCheckinInvitation extends AppCompatActivity implements View.OnC
                                 phones.moveToFirst();
                                 String cNumber = phones.getString(phones.getColumnIndex("data1"));
 
-                                String mobNumber=cNumber.replaceAll("\\D+","").replaceAll("[\\s]+","").trim();
+                                String mobNumber = cNumber.replaceAll("/+[\\D]+", "").replaceAll("[\\s]+", "").trim();
 
-                                if (TextUtils.isEmpty(mobNumber)){
+                                if (TextUtils.isEmpty(mobNumber)) {
                                     Toast.makeText(this, "No Number is attached with this contact", Toast.LENGTH_SHORT).show();
-                                } else if (mobNumber.length()<=10){
+                                } else {
                                     etUserNumber.setText(mobNumber);
-                                }else {
-                                    etUserNumber.setText(mobNumber.substring(mobNumber.length() - 10));
                                 }
                             }
 

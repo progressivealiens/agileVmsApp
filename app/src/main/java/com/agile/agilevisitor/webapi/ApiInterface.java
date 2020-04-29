@@ -44,13 +44,11 @@ public interface ApiInterface {
             @Field("token") String token
     );
 
-
     @FormUrlEncoded
     @POST("getAllSubUnitPerson")
     Call<ApiResponse> getAllSubUnitPerson(
             @Field("subUnitId") String subUnitCode
     );
-
 
     @FormUrlEncoded
     @POST("panelLogout")
@@ -87,7 +85,6 @@ public interface ApiInterface {
             @Part("invitationId") RequestBody invitationId
     );
 
-
     @FormUrlEncoded
     @POST("previouslyVisitedNoEdit")
     Call<ApiResponse> previouslyVisitedNoEdit(
@@ -121,7 +118,6 @@ public interface ApiInterface {
     );
 
 
-
     @Multipart
     @POST("panelVisitorCheckOut")
     Call<ApiResponse> panelVisitorCheckOut(
@@ -130,9 +126,7 @@ public interface ApiInterface {
             @Part MultipartBody.Part checkOutPhoto
     );
 
-
     /*User APIs*/
-
 
     @FormUrlEncoded
     @POST("userLogin")
@@ -175,17 +169,10 @@ public interface ApiInterface {
             @Field("VAR7") String VAR7
     );
 
-
-
-
     @FormUrlEncoded
     @POST("userLogout")
     Call<ApiResponse> userLogout(
             @Field("token") String token
     );
-
-
-
-
 
 }

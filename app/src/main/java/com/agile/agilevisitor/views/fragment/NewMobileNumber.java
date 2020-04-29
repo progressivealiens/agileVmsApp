@@ -19,12 +19,13 @@ import com.agile.agilevisitor.helper.PrefData;
 import com.agile.agilevisitor.helper.ProgressView;
 import com.agile.agilevisitor.helper.Utils;
 import com.agile.agilevisitor.helper.Validation;
+import com.agile.agilevisitor.views.activity.LoginUserTypeActivity;
 import com.agile.agilevisitor.views.activity.visiting_panel.VisitingHomePanel;
 import com.agile.agilevisitor.webapi.ApiClient;
 import com.agile.agilevisitor.webapi.ApiInterface;
 import com.agile.agilevisitor.webapi.OTPResponse;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,8 @@ public class NewMobileNumber extends Fragment {
     RelativeLayout rootFragMobile;
     @BindView(R.id.et_mobile_number)
     TextInputEditText etMobileNumber;
+    @BindView(R.id.ccp)
+    CountryCodePicker countryCodePicker;
 
     ApiInterface apiInterface;
     ProgressView progressView;
@@ -52,7 +55,7 @@ public class NewMobileNumber extends Fragment {
         v = inflater.inflate(R.layout.fragment_new_number, container, false);
         ButterKnife.bind(this, v);
 
-        Log.e("token",PrefData.readStringPref(PrefData.pref_fcm_token));
+        Log.e("token", PrefData.readStringPref(PrefData.pref_fcm_token));
 
         initialize();
 
@@ -60,15 +63,24 @@ public class NewMobileNumber extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (Validation.nullValidator(etMobileNumber.getText().toString())){
-                    Utils.showSnackBar(rootFragMobile, "Mobile Number can't be null", etMobileNumber, getActivity());
-                }else if (!Validation.mobileValidator(etMobileNumber.getText().toString())){
-                    Utils.showSnackBar(rootFragMobile, "Mobile Number must be 10 digits long", etMobileNumber, getActivity());
-                }else{
+                countryCodePicker.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
+                    @Override
+                    public void onValidityChanged(boolean isValidNumber) {
+                        if (!isValidNumber) {
+                            Utils.showSnackBar(rootFragMobile, "Please write the mobile number in proper format", etMobileNumber,getActivity());
+                        } else {
+                            //get formatted number i.e "+1 469-664-1766"
+                            //countryCodePicker.getFormattedFullNumber();
 
-                    connectApiToSendOtpToVisitorMobile(etMobileNumber.getText().toString());
+                            //get unformatted number i.e. "14696641766"
+                            //countryCodePicker.getFullNumber();
 
-                }
+                            //get unformatted number with prefix "+" i.e "+14696641766"
+                            //countryCodePicker.getFullNumberWithPlus();
+                            connectApiToSendOtpToVisitorMobile(countryCodePicker.getFullNumberWithPlus());
+                        }
+                    }
+                });
             }
         });
         return v;
@@ -77,6 +89,7 @@ public class NewMobileNumber extends Fragment {
     private void initialize() {
         apiInterface = ApiClient.getOTPClient(getActivity()).create(ApiInterface.class);
         progressView = new ProgressView(getActivity());
+        countryCodePicker.registerCarrierNumberEditText(etMobileNumber);
     }
 
     private void connectApiToSendOtpToVisitorMobile(String mobileNum) {
@@ -94,8 +107,8 @@ public class NewMobileNumber extends Fragment {
 
                         if (response.body().getStatus().equalsIgnoreCase(getString(R.string.success))) {
 
-                            PrefData.writeStringPref(PrefData.pref_visiting_mobile,mobileNum);
-                            PrefData.writeStringPref(PrefData.pref_visitor_mobile_details,response.body().getDetails());
+                            PrefData.writeStringPref(PrefData.pref_visiting_mobile, mobileNum);
+                            PrefData.writeStringPref(PrefData.pref_visitor_mobile_details, response.body().getDetails());
                             Utils.hideSoftKeyboard(getActivity());
                             Utils.changeFragmentHome(new VerifyOTPFragment(), "frag_verify_otp", VisitingHomePanel.activity);
 
@@ -115,6 +128,7 @@ public class NewMobileNumber extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<OTPResponse> call, Throwable t) {
                     progressView.hideLoader();

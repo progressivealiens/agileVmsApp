@@ -23,14 +23,14 @@
         android:name=".helper.PrefData"
         android:allowBackup="true"
         android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/agile_logo_upgraded"
         android:label="@string/app_name"
         android:roundIcon="@drawable/agile_logo_upgraded"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:hardwareAccelerated="true">
+        tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".views.activity.SplashActivity">
             <intent-filter>
@@ -39,77 +39,77 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".views.activity.user_panel.VisitorHistoryActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".views.activity.user_panel.UserProfileActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".views.activity.user_panel.UserHomeActivity"
             android:label="@string/title_activity_user_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".views.activity.visiting_panel.VisitingHomePanel"
             android:label="Visiting Panel"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".views.activity.visiting_panel.PanelLoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.LoginUserTypeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".views.activity.IntroductoryScreen"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.AllDetailsActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".helper.CameraActivity" />
-
-        <activity
-            android:name=".views.activity.visiting_panel.ConfirmVisitorRestDetailsActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.ConfirmVisitorDetails"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.NDAActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.VisitingLandingScreen"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.CheckoutActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.visiting_panel.GeneratePassActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".views.activity.user_panel.UserCheckinInvitation"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".views.activity.visiting_panel.EnterPasscodeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        <activity
+            android:name=".views.activity.LoginUserTypeActivity"
             android:screenOrientation="portrait"
-            tools:replace="screenOrientation"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.IntroductoryScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activity.visiting_panel.AllDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".helper.CameraActivity" />
+        <activity
+            android:name=".views.activity.visiting_panel.ConfirmVisitorRestDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.ConfirmVisitorDetails"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.NDAActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.VisitingLandingScreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.CheckoutActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.GeneratePassActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.user_panel.UserCheckinInvitation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activity.visiting_panel.EnterPasscodeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
 
         <service
             android:name=".firebase.FireIDService"

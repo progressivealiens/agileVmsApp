@@ -3,6 +3,7 @@ package com.agile.agilevisitor.views.activity.visiting_panel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ import com.agile.agilevisitor.webapi.ApiClient;
 import com.agile.agilevisitor.webapi.ApiInterface;
 import com.agile.agilevisitor.webapi.ApiResponse;
 import com.google.android.material.textfield.TextInputEditText;
-import com.squareup.picasso.Picasso;
+import com.hbb20.CountryCodePicker;
 
 import java.io.File;
 
@@ -54,7 +55,8 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     TextInputEditText etMobileNumber;
     @BindView(R.id.root_checkout)
     LinearLayout rootCheckout;
-
+    @BindView(R.id.ccp)
+    CountryCodePicker countryCodePicker;
 
     String checkoutPhoto = "";
 
@@ -63,7 +65,6 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
     ApiInterface apiInterface;
     ProgressView progressView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +92,8 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
         apiInterface = ApiClient.getClient(CheckoutActivity.this, 0).create(ApiInterface.class);
         progressView = new ProgressView(CheckoutActivity.this);
+        countryCodePicker.registerCarrierNumberEditText(etMobileNumber);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -105,13 +106,17 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
         if (v.getId() == R.id.btn_click_photo) {
 
-            if (etMobileNumber.getText().toString().trim().equalsIgnoreCase("")){
-                Toast.makeText(this, "Please fill mobile number", Toast.LENGTH_SHORT).show();
-            }else{
-                startActivityForResult(new Intent(CheckoutActivity.this, CameraActivity.class).putExtra("toolbar_title", "basic"), photoRequest);
-            }
+            countryCodePicker.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
+                @Override
+                public void onValidityChanged(boolean isValidNumber) {
+                    if (!isValidNumber) {
+                        Utils.showSnackBar(rootCheckout, "Please write the mobile number in proper format", etMobileNumber,CheckoutActivity.this);
+                    } else {
+                        startActivityForResult(new Intent(CheckoutActivity.this, CameraActivity.class).putExtra("toolbar_title", "basic"), photoRequest);
+                    }
+                }
+            });
         }
-
     }
 
     private void connectApiToCheckout() {
@@ -121,7 +126,7 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
             MultipartBody.Part filePart = MultipartBody.Part.createFormData("checkOutPhoto", photoImageFile.getName(), RequestBody.create(MediaType.parse("image/*"), photoImageFile));
             RequestBody Token = RequestBody.create(MediaType.parse("text/plain"), PrefData.readStringPref(PrefData.pref_fcm_token));
-            RequestBody MobileNumber = RequestBody.create(MediaType.parse("text/plain"), etMobileNumber.getText().toString().trim());
+            RequestBody MobileNumber = RequestBody.create(MediaType.parse("text/plain"), countryCodePicker.getFullNumberWithPlus());
 
             Call<ApiResponse> call = apiInterface.panelVisitorCheckOut(
                     Token,
@@ -175,7 +180,6 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -191,4 +195,5 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
             }
         }
     }
+
 }

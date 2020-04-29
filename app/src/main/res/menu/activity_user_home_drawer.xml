@@ -12,10 +12,10 @@
             android:id="@+id/nav_send_invitation"
             android:icon="@drawable/ic_insert_invitation_black_24dp"
             android:title="Send Invitation" />
-        <item
+        <!--<item
             android:id="@+id/nav_visitor_history"
             android:icon="@drawable/ic_history_black_24dp"
-            android:title="Visitor History" />
+            android:title="Visitor History" />-->
 
         <item
             android:id="@+id/nav_rate_us"

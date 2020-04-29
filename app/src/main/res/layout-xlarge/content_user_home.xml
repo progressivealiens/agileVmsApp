@@ -145,7 +145,7 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <com.agile.agilevisitor.customviews.MyButton
+        <!--<com.agile.agilevisitor.customviews.MyButton
             android:id="@+id/btn_visitor_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
             android:text="View Visitor History"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
         <com.agile.agilevisitor.customviews.MyButton
             android:id="@+id/btn_view_profile"

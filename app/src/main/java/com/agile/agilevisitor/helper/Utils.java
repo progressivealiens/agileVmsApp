@@ -54,6 +54,7 @@ import static android.os.Process.killProcess;
  */
 
 public class Utils {
+
     public static String BASE = "http://www.agilevisitor.com/api/";
     public static String BASE_VISITOR_PIC = "http://www.agilevisitor.com/images/visitorSelfie/";
     public static String BASE_VISITOR_AADHAR = "http://www.agilevisitor.com/images/visitorAdhaarCard/";
@@ -68,8 +69,6 @@ public class Utils {
                 .addToBackStack(name)
                 .commit();
     }
-
-
 
     public static void changeFragmentHome(Fragment targetFragment, String name, AppCompatActivity context) {
         context.getSupportFragmentManager().beginTransaction()
@@ -86,8 +85,6 @@ public class Utils {
                 .addToBackStack(name)
                 .commit();
     }
-
-
 
     public static boolean isInternetOn(Activity context) {
         boolean isActive = false;
@@ -112,7 +109,6 @@ public class Utils {
         return isActive;
     }
 
-
     public static boolean isLocationServicesEnabled(Context context) {
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = false;
@@ -126,7 +122,6 @@ public class Utils {
 
         return gps_enabled;
     }
-
 
     public void changeStatusBarColor(Activity context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -245,20 +240,37 @@ public class Utils {
     }
 
     public static void timePicker(Context context, final TextInputEditText textview){
+
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
+
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                textview.setText( selectedHour + ":" + selectedMinute);
+                String AM_PM = " AM";
+                String mm_precede = "";
+                if (selectedHour >= 12) {
+                    AM_PM = " PM";
+                    if (selectedHour >=13 && selectedHour < 24) {
+                        selectedHour -= 12;
+                    }
+                    else {
+                        selectedHour = 12;
+                    }
+                } else if (selectedHour == 0) {
+                    selectedHour = 12;
+                }
+                if (selectedMinute < 10) {
+                    mm_precede = "0";
+                }
+                textview.setText( selectedHour + ":" + mm_precede + selectedMinute + AM_PM);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
-
 
     public static void showDatePicker(Context context, final MyTextview textview) {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
@@ -274,7 +286,6 @@ public class Utils {
         datePicker.getDatePicker().setMaxDate(cal.getTimeInMillis());
         datePicker.show();
     }
-
 
     public static void showDatePicker(Context context, final AppCompatEditText editText, String old) {
         final Calendar cal = Calendar.getInstance(TimeZone.getDefault());

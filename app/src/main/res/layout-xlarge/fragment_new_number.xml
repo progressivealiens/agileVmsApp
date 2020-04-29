@@ -23,36 +23,55 @@
             android:textSize="@dimen/sp_18"
             android:layout_marginBottom="@dimen/dp_15"/>
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_mobile_number"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="@color/colorBlack"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:hint="Enter Mobile Number"
-            android:textColorHint="@color/colorBlack">
+            android:layout_marginBottom="@dimen/dp_20">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_mobile_number"
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccp_textSize="@dimen/sp_15"
+                app:ccp_arrowSize="@dimen/dp_25"
+                app:ccp_contentColor="@color/colorBlack"
+                app:ccp_flagBorderColor="@color/colorGrey"
+                app:ccp_arrowColor="@color/colorBlack"
+                app:ccp_countryPreference="in"
+                app:ccp_autoFormatNumber="true"
+                app:ccpDialog_showCloseIcon="true"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:drawableStart="@drawable/ic_local_phone_black_24dp"
-                android:drawablePadding="@dimen/dp_10"
-                android:fontFamily="font/aver_bold"
-                android:inputType="number"
-                android:maxLength="10"
-                android:maxLines="1"
-                android:textColorHint="@color/colorWhite"
-                android:textSize="@dimen/sp_16" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:theme="@style/TextLabel"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeColor="@color/colorBlack"
+                android:hint="Enter Mobile Number"
+                android:textColorHint="@color/colorBlack">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:fontFamily="font/aver_bold"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <com.agile.agilevisitor.customviews.MyButton
             android:id="@+id/btn_send_otp"
